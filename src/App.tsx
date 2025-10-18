@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { Fragment } from "react";
 import NavBar from "./components/navBar/NavBar";
-import CookingArea from "./components/cookingArea";
-import { navLinks as NavLinks, brandName } from "./data/content";
+import CookingArea from "./components/CookingArea";
+import { navLinks as NavLinks, brandName } from "./data/NavLinks.types";
 
 export default function App() {
   return (
@@ -22,6 +22,7 @@ export default function App() {
           />
         ))}
       </Routes>
+
     </Fragment>
   );
 }

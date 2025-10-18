@@ -1,13 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
 import "./Home.css";
 import Clock from "../clock/Clock";
-import { ProfileImage, LazyImage } from "./ImageWithPlaceholder";
 
 export default function Home() {
     const [content, setContent] = useState<any>(null);
 
     useEffect(() => {
-        import("../../data/content").then((module) => {
+        import("../../data/Homepage.types").then((module) => {
             setContent(module);
         });
     }, []);
@@ -19,17 +18,17 @@ export default function Home() {
 
     return (
         <Fragment>
-            <div className="homePageContent">
-                
-                <div className="leftSide">
-                    
-                    <div className="header">
-                        <h1 className="headerPhrase m-0">{headerPhrase}</h1>
+            <div className="d-flex flex-xxl-row flex-column">
+
+                <div className="leftSide d-flex g-3 flex-column">
+
+                    <div className="d-flex align-items-center p-3 mx-2">
+                        <h1 className="m-0">{headerPhrase}</h1>
                     </div>
 
-                    <div className="contentWrapper">
+                    <div className="d-flex flex-xxl-row flex-column gap-3 p-3">
 
-                        <div className="elevatorPitch rounded-border">
+                        <div className="elevatorPitch p-3 rounded-border">
                             {elevatorPitch.map((item: any, index: number) => (
                                 <div key={index}>
                                     <h2 className="m-0">{item.title}</h2>
@@ -39,15 +38,14 @@ export default function Home() {
                             ))}
                         </div>
 
-                        <div className="devLoadouts rounded-border">
+                        <div className="devLoadouts p-3 rounded-border">
                             <h2 className="m-0">{devLoadoutsContent.header}</h2>
-                            <hr />
                             {devLoadoutsContent.sections.map((section: any) => (
                                 <div key={section.category}>
-                                    <p>{section.category}</p>
-                                    <div>
-                                        {section.badges.map((url: string) => (
-                                            <LazyImage key={url} src={url} alt="Badge" />
+                                    <p className="m-1">{section.category}</p>
+                                    <div className="d-flex flex-wrap gap-1">
+                                        {section.badges.map((url: string, index: number) => (
+                                            <img key={`${url}-${index}`} src={url} alt="Badge" />
                                         ))}
                                     </div>
                                 </div>
@@ -57,15 +55,21 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="rightSide">
+                <div className="rightSide d-flex flex-column justify-content-between">
 
-                    <div className="imageWrapper d-flex justify-content-center align-items-center">
-                        <ProfileImage src={profileImage} alt="Profile Picture" />
+                    <div className="container-fluid d-flex justify-content-center">
+                        <div className="p-3">
+                            <img
+                                src={profileImage}
+                                alt="Profile Picture"
+                                className="img-thumbnai profileImage"
+                            />
+                        </div>
                     </div>
 
-                    <div className="spacer">
-                        
-                        <div className="profileDetails d-flex flex-column align-items-center justify-content-center rounded-border">
+                    <div className="d-flex flex-column flex-fill p-3 gap-3">
+
+                        <div className="profileDetails flex-fill d-flex flex-column justify-content-center rounded-border">
                             {profileInfo.map((info: any) => (
                                 <p key={info.label} className="text-center m-0">
                                     {info.label}: {info.value}
@@ -73,16 +77,26 @@ export default function Home() {
                             ))}
                         </div>
 
-                        <div className="socialLinks d-flex flex-wrap gap-2 justify-content-center align-items-center rounded-border">
-                            {socialLinksContent.badges.map((badge: any) => (
-                                <a href={badge.href} target="_blank" rel="noopener noreferrer" key={badge.alt}>
-                                    <LazyImage src={badge.img} alt={badge.alt} className="socialIcon" />
-                                </a>
-                            ))}
+                        <div className="socialLinks p-3 rounded-border">
+                            <div className="d-flex flex-wrap row-gap-2 column-gap-1 justify-content-center align-items-center">
+                                {socialLinksContent.badges.map((badge: any) => (
+                                    <a
+                                        href={badge.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        key={badge.alt}
+                                    >
+                                        <img src={badge.img} alt={badge.alt} />
+                                    </a>
+                                ))}
+                            </div>
                         </div>
 
-                        <div className="etC rounded-border d-flex flex-column">
-                            <Clock />
+
+                        <div className="etC flex-fill rounded-border d-flex flex-column p-3">
+                            <div className="d-flex flex-fill align-items-center">
+                                <Clock />
+                            </div>
                         </div>
                     </div>
 

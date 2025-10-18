@@ -8,8 +8,8 @@ interface CookingAreaProps {
 export default function CookingArea({ children }: CookingAreaProps) {
     return (
         <Fragment>
-            <div id="wrapper">
-                <div id="cookingArea" className="d-flex">
+            <div className='container-fluid'>
+                <div className="cookingArea">
                     {children}
                 </div>
             </div>

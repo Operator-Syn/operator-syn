@@ -1,15 +1,4 @@
-import type { NavLinkItem as NavLink } from "../components/navBar/NavBar.type";
-import Home from "../components/pages/Home";
 import profileEncircle from "./../assets/profile-encircle.png";
-
-export const brandName = "Operator-Syn";
-
-export const navLinks: NavLink[] = [
-    { name: "Home", path: "/", component: Home },
-    { name: "Projects", path: "/projects", component: null },
-    { name: "Certificates", path: "/certs", component: null },
-    { name: "Snippets", path: "/snippets", component: null },
-];
 
 // Home page content
 export const homeContent = {
@@ -34,6 +23,8 @@ export const devLoadoutsContent = {
                 "https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black",
                 "https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white",
                 "https://img.shields.io/badge/Pop!_OS-48B9C7?style=for-the-badge&logo=Pop!_OS&logoColor=white",
+                "https://img.shields.io/badge/Zorin%20OS-0CC1F3?style=for-the-badge&logo=zorin&logoColor=white",
+                "https://img.shields.io/badge/Zorin%20OS-0CC1F3?style=for-the-badge&logo=zorin&logoColor=white",
                 "https://img.shields.io/badge/Zorin%20OS-0CC1F3?style=for-the-badge&logo=zorin&logoColor=white",
             ],
         },
@@ -70,12 +61,12 @@ export const devLoadoutsContent = {
     ],
 };
 
-//Profile Information
+// Profile Information
 export const profileInfo = [
-    {label: "Name", value: "John-Ronan Beira"},
-    {label: "Program", value: "BS Computer Science"},
-    {label: "Year", value: "Third Year"},
-]
+    { label: "Name", value: "John-Ronan Beira" },
+    { label: "Program", value: "BS Computer Science" },
+    { label: "Year", value: "Third Year" },
+];
 
 // Social Links Content
 export const socialLinksContent = {

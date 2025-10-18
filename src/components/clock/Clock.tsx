@@ -35,9 +35,9 @@ export default function Clock() {
     }, [time]);
 
     return (
-        <section>
+        <div>
             <p className="m-0">{greeting} → {formattedTime}</p>
             <p className="m-0">❏ Take a look around — I hope you find something that inspires you.</p>
-        </section>
+        </div>
     );
 }
