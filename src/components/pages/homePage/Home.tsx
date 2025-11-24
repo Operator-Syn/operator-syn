@@ -1,8 +1,9 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, lazy, Suspense } from "react";
 import "./Home.css";
-import LeftSection from "../../leftSection/LeftSection";
-import RightSection from "../../rightSection/RightSection";
-;
+
+// Lazy-load the sections
+const LeftSection = lazy(() => import("../../leftSection/LeftSection"));
+const RightSection = lazy(() => import("../../rightSection/RightSection"));
 
 export default function Home() {
     const [content, setContent] = useState<any>(null);
@@ -18,11 +19,17 @@ export default function Home() {
     const { homeContent, devLoadoutsContent, profileInfo, socialLinksContent } = content;
 
     return (
-        <Fragment>
-            <div className="d-flex flex-xxl-row flex-column">
-                <LeftSection homeContent={homeContent} devLoadoutsContent={devLoadoutsContent} />
-                <RightSection profileInfo={profileInfo} socialLinksContent={socialLinksContent} profileImage={homeContent.profileImage} />
-            </div>
-        </Fragment>
+        <Suspense fallback={<div>Loading sections...</div>}>
+            <Fragment>
+                <div className="d-flex flex-xxl-row flex-column">
+                    <LeftSection homeContent={homeContent} devLoadoutsContent={devLoadoutsContent} />
+                    <RightSection
+                        profileInfo={profileInfo}
+                        socialLinksContent={socialLinksContent}
+                        profileImage={homeContent.profileImage}
+                    />
+                </div>
+            </Fragment>
+        </Suspense>
     );
 }
