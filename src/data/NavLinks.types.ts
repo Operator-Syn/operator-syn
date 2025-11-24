@@ -1,5 +1,5 @@
 import type { NavLinkItem } from "../components/navBar/NavBar";
-import Home from "../components/pages/Home";
+import Home from "../components/pages/homePage/Home";
 
 export const brandName = "Operator-Syn";
 

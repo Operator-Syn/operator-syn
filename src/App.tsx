@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Fragment } from "react";
 import NavBar from "./components/navBar/NavBar";
-import CookingArea from "./components/CookingArea";
+import CookingArea from "./components/cookingArea/CookingArea";
 import { navLinks as NavLinks, brandName } from "./data/NavLinks.types";
 
 export default function App() {
