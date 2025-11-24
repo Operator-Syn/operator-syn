@@ -17,7 +17,6 @@ h1 {
     font-size: clamp(1.15rem, 2vw + 1rem, 3.5rem);
 }
 
-/* Base paragraph styles */
 p {
     font-size: 1.35rem;
     line-height: 150%;
@@ -44,7 +43,7 @@ body::before {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(5px);
+    filter: blur(7px);
     z-index: -1;
     pointer-events: none;
 }
@@ -64,10 +63,6 @@ body::before {
     border-radius: 1rem;
 }
 
-#root {
-    display: grid;
-    place-items: center;
-}
 
 /* Unified responsive styles */
 @media (max-width: 992px) {
