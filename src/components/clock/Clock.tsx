@@ -12,7 +12,7 @@ function useClock() {
     return time;
 }
 
-export default function Clock() {
+export default function ClockPanel() {
     const time = useClock();
 
     // Compute greeting only when time changes
@@ -35,7 +35,7 @@ export default function Clock() {
     }, [time]);
 
     return (
-        <div>
+        <div className="light-glass-blue-hue flex-grow-1 p-3 rounded shadow-sm d-flex flex-column justify-content-around">
             <p className="m-0">{greeting} → {formattedTime}</p>
             <p className="m-0">❏ Take a look around — I hope you find something that inspires you.</p>
         </div>

@@ -6,7 +6,7 @@ export default function GlobalHeadManager() {
                 name="description"
                 content="John-Ronan Beira’s portfolio — a collection of milestones shaped by exploration in software technologies."
             />
-            <link rel="icon" href="/src/assets/profile-encircle.png" type="image/png" />
+            <link rel="icon" href="/assets/profile-encircle-min.png" type="image/png" />
 
             {/* Open Graph */}
             <meta property="og:title" content="Operator-Syn | Portfolio & Homepage" />

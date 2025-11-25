@@ -1,5 +1,5 @@
 .navbar {
-background: rgba(28, 87, 137, 0.65);
+    background: rgba(28, 87, 137, 0.65);
 }
 
 a.navbar-brand {
@@ -13,7 +13,7 @@ a.navbar-brand {
 
 .navbar .nav-link,
 .navbar .navbar-brand {
-    font-size: 1.25rem;
+    /* font-size: 1.25rem; */
     color: rgb(227, 242, 253);
     font-weight: bold;
 }
@@ -21,7 +21,7 @@ a.navbar-brand {
 .navbar .navbar-brand {
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
 }
 
 .navbar .nav-link:hover {
@@ -34,8 +34,14 @@ a.navbar-brand {
 }
 
 @media (max-width: 992px) {
-.navbar .navbar-brand {
-    margin-left: 0;
-    margin-right: 0;
+    .navbar .navbar-brand {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
+
+@media (max-width: 1400px) {
+a.navbar-brand {
+        padding: 0rem;
+    }
 }

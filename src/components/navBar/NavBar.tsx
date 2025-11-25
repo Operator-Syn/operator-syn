@@ -1,4 +1,4 @@
-import { useState, type FC } from "react";
+import { useState, useRef, useEffect, useCallback, type FC } from "react";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./NavBar.css";
@@ -6,7 +6,7 @@ import "./NavBar.css";
 export interface NavLinkItem {
     name: string;
     path: string;
-    component?: FC | null; // optional component
+    component?: FC | null;
 }
 
 interface NavBarProps {
@@ -16,9 +16,22 @@ interface NavBarProps {
 
 export default function NavBar({ brandName, links }: NavBarProps) {
     const [expanded, setExpanded] = useState(false);
+    const navRef = useRef<HTMLDivElement>(null);
+
+    const handleClickOutside = useCallback((event: MouseEvent) => {
+        if (navRef.current && !navRef.current.contains(event.target as Node)) {
+            setExpanded(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [handleClickOutside]);
 
     return (
         <Navbar
+            ref={navRef}
             expand="lg"
             expanded={expanded}
             className="fixed-top glass"
@@ -29,7 +42,7 @@ export default function NavBar({ brandName, links }: NavBarProps) {
                 </Navbar.Brand>
                 <Navbar.Toggle
                     aria-controls="navbar-nav"
-                    onClick={() => setExpanded(expanded ? false : true)}
+                    onClick={() => setExpanded((prev) => !prev)}
                 />
                 <Navbar.Collapse id="navbar-nav">
                     <Nav className="ms-auto">

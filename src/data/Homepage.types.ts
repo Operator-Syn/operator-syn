@@ -1,15 +1,14 @@
-import profileEncircle from "./../assets/profile-encircle.png";
-
 // Home page content
 export const homeContent = {
     headerPhrase: "Calm Interfaces, Seamless Experiences — Welcome Visitors!",
+    mobileHeaderPhrase: "", 
     elevatorPitch: [
         {
             title: "Get to know 'lil more about me",
             content: "Hello Everyone! I'm a Third Year Computer Science Student with hands-on experience in Java, C++, Python, and MySQL. I am also comfortable working in Linux environments and using tools like Docker and Apache for development and deployment. Excited to work on real-world software challenges and grow through hands-on experience and team collaboration. Let's connect and explore opportunities to innovate together!",
         },
     ],
-    profileImage: profileEncircle,
+    profileImage: "/assets/profile-encircle.png",
 };
 
 // Development Loadouts content
@@ -47,6 +46,7 @@ export const devLoadoutsContent = {
             category: "Database",
             badges: [
                 "https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white",
+                "https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white"
             ],
         },
         {
@@ -63,7 +63,7 @@ export const devLoadoutsContent = {
 export const profileInfo = [
     { label: "Name", value: "John-Ronan Beira" },
     { label: "Program", value: "BS Computer Science" },
-    { label: "Year", value: "Third Year" },
+    { label: "Year Level", value: "Third Year" },
 ];
 
 // Social Links Content
