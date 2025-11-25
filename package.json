@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "npm run build && serve -s dist"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
