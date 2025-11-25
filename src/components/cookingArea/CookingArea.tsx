@@ -9,7 +9,7 @@ export default function CookingArea({ children }: CookingAreaProps) {
     return (
         <Fragment>
             <div className='container-fluid'>
-                <div className="cookingArea">
+                <div className="cookingArea rounded shadow-sm">
                     {children}
                 </div>
             </div>
