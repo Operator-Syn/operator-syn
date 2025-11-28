@@ -4,7 +4,7 @@ export const homeContent = {
     mobileHeaderPhrase: "", 
     elevatorPitch: [
         {
-            title: "Get to know 'lil more about me",
+            title: "Know 'lil more about me",
             content: "Hello Everyone! I'm a Third Year Computer Science Student with hands-on experience in Java, C++, Python, and MySQL. I am also comfortable working in Linux environments and using tools like Docker and Apache for development and deployment. Excited to work on real-world software challenges and grow through hands-on experience and team collaboration. Let's connect and explore opportunities to innovate together!",
         },
     ],
@@ -23,6 +23,7 @@ export const devLoadoutsContent = {
                 "https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white",
                 "https://img.shields.io/badge/Pop!_OS-48B9C7?style=for-the-badge&logo=Pop!_OS&logoColor=white",
                 "https://img.shields.io/badge/Zorin%20OS-0CC1F3?style=for-the-badge&logo=zorin&logoColor=white",
+                "https://img.shields.io/badge/Red%20Hat-EE0000?style=for-the-badge&logo=redhat&logoColor=white",
             ],
         },
         {
@@ -40,6 +41,7 @@ export const devLoadoutsContent = {
                 "https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white",
                 "https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=Apache&logoColor=white",
                 "https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB",
+                "https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white",
             ],
         },
         {
@@ -54,6 +56,12 @@ export const devLoadoutsContent = {
             badges: [
                 "https://img.shields.io/badge/Portainer-13BEF9?style=for-the-badge&logo=portainer&logoColor=white",
                 "https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white",
+            ],
+        },
+        {
+            category: "Networking and Security",
+            badges: [
+                "https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white"
             ],
         },
     ],

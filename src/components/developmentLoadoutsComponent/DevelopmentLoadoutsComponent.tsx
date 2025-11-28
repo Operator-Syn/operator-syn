@@ -1,3 +1,5 @@
+import { useState, useEffect, Suspense, lazy } from "react";
+
 interface DevLoadoutSection {
     category: string;
     badges: string[];
@@ -12,32 +14,25 @@ interface DevLoadoutsProps {
     content: DevLoadoutsContent;
 }
 
-export default function DevLoadoutsComponent(props: DevLoadoutsProps) {
-    const { content } = props;
-    const { header, sections } = content;
+export default function DevelopmentLoadoutsComponent({ content }: DevLoadoutsProps) {
+    const [isSmall, setIsSmall] = useState<boolean>(window.innerWidth <= 1400);
+
+    const MobileComponent = lazy(() => import("./DevelopmentLoadoutsComponentForMobile"));
+    const DesktopComponent = lazy(() => import("./DevelopmentLoadoutsComponentForDesktop"));
+
+    useEffect(() => {
+        const handleResize = () => setIsSmall(window.innerWidth <= 1400);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     return (
-        <div className="col-4 d-flex flex-column">
-            <div className="light-glass-blue-hue flex-grow-1 p-3 rounded shadow-sm">
-                <h2 className="mb-3">{header}</h2>
-                <hr />
-
-                {sections.map((section, index) => (
-                    <div key={index} className="mb-3">
-                        <h5 className="mb-2">{section.category}</h5>
-
-                        <div className="d-flex flex-wrap gap-2">
-                            {section.badges.map((badgeUrl, i) => (
-                                <img
-                                    key={i}
-                                    src={badgeUrl}
-                                    alt={`${section.category} badge`}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
+        <Suspense fallback={<div>Loading Component...</div>}>
+            {isSmall ? (
+                <MobileComponent content={content} />
+            ) : (
+                <DesktopComponent content={content} />
+            )}
+        </Suspense>
     );
 }

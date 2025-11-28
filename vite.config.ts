@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server:{
     host: true,
-    allowedHosts:["yashindo.local"]
+    allowedHosts: ["yashindo.local", "dev.syn-forge.com"]
   }
 })

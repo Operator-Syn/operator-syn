@@ -16,6 +16,21 @@ body * {
 }
 
 html {
+    height: calc(100% + 1px);
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+html {
     scroll-behavior: smooth;
 }
 

@@ -12,7 +12,7 @@ export default function SocialLinksComponent(props: SocialLinksComponentProps) {
     const { badges } = props;
 
     return (
-        <div className="light-glass-blue-hue flex-grow-1 p-3 rounded shadow-sm d-flex flex-column justify-content-around align-items-start">
+        <div className="light-glass-blue-hue flex-grow-1 p-3 rounded shadow-sm d-flex flex-column justify-content-around">
             <p className="mb-0">Let's Connect!</p>
             <div className="d-flex flex-wrap gap-2 justify-content-center">
                 {badges.map((badge, index) => (
