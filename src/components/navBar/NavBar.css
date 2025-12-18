@@ -1,47 +1,44 @@
-.navbar {
+.custom-nav {
     background: rgba(28, 87, 137, 0.65);
 }
 
-a.navbar-brand {
+.custom-nav .navbar-brand {
     padding: 0.5rem;
-}
-
-.navbar .container-fluid {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-}
-
-.navbar .nav-link,
-.navbar .navbar-brand {
-    /* font-size: 1.25rem; */
+    margin-left: auto;
+    margin-right: auto;
     color: rgb(227, 242, 253);
     font-weight: bold;
 }
 
-.navbar .navbar-brand {
-    margin-left: auto;
-    margin-right: auto;
-    /* font-size: 1.5rem; */
+.custom-nav .container-fluid {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
-.navbar .nav-link:hover {
+.custom-nav .nav-link {
+    color: rgb(227, 242, 253);
+    font-weight: bold;
+}
+
+.custom-nav .nav-link:hover {
     color: #FFD700;
-    /* slightly darker gold for hover */
 }
 
-.navbar .nav-link.active {
-    color: #FFFF00
+/* !important ensures we override the default Bootstrap active state color */
+.custom-nav .nav-link.active {
+    color: #FFFF00;
 }
 
+/* Responsive adjustments scoped to this navbar */
 @media (max-width: 992px) {
-    .navbar .navbar-brand {
+    .custom-nav .navbar-brand {
         margin-left: 0;
         margin-right: 0;
     }
 }
 
 @media (max-width: 1400px) {
-a.navbar-brand {
+    .custom-nav .navbar-brand {
         padding: 0rem;
     }
 }

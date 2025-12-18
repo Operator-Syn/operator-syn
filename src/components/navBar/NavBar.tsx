@@ -34,7 +34,7 @@ export default function NavBar({ brandName, links }: NavBarProps) {
             ref={navRef}
             expand="lg"
             expanded={expanded}
-            className="fixed-top glass"
+            className="fixed-top glass custom-nav"
         >
             <Container fluid>
                 <Navbar.Brand as={NavLink} to="/">
