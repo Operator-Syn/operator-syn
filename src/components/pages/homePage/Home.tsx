@@ -1,80 +1,88 @@
-import { Fragment, useEffect, useState, lazy, Suspense } from "react";
+import { useEffect, useState } from "react";
+import type { HomePageTypes } from "../../../types/HomePageTypes";
 import "./Home.css";
 
-// Lazy-load components
-const CookingArea = lazy(() => import("../../cookingArea/CookingArea"));
-const HeaderComponent = lazy(() => import("../../headerComponent/HeaderComponent"));
-const ProfileImageComponent = lazy(() => import("../../profileImageComponent/ProfileImageComponent"));
-const ElevatorPitchComponent = lazy(() => import("../../elevatorPitch/ElevatorPitch"));
-const DevLoadoutsComponent = lazy(() => import("../../developmentLoadoutsComponent/DevelopmentLoadoutsComponent"));
-const ColumnPanels = lazy(() => import("../../columnPanels/ColumnPanels"));
+import HeaderComponent from "../../headerComponent/HeaderComponent";
+import ElevatorPitchComponent from "../../elevatorPitch/ElevatorPitch";
+import CookingArea from "../../cookingArea/CookingArea";
+import ColumnPanels from "../../columnPanels/ColumnPanels";
+import ProfileImageComponent from "../../profileImageComponent/ProfileImageComponent";
+import DevelopmentLoadoutsComponent from "../../developmentLoadoutsComponent/DevelopmentLoadoutsComponent";
 
 export default function Home() {
-    interface DevLoadoutSection {
-        category: string;
-        badges: string[];
-    }
-
-    interface DevLoadoutsContent {
-        header: string;
-        sections: DevLoadoutSection[];
-    }
-
-    const [content, setContent] = useState<any>(null);
+    const [data, setData] = useState<HomePageTypes | null>(null);
+    
+    // Helper variable to determine loading state
+    const isLoading = !data;
 
     useEffect(() => {
-        import("../../../data/Homepage.types").then((module) => {
-            setContent(module);
-        });
+        const fetchHomeData = async () => {
+            try {
+                const apiUrl = import.meta.env.VITE_API_URL;
+                const response = await fetch(`${apiUrl}/home`);
+                if (!response.ok) throw new Error("Failed to fetch");
+                const result: HomePageTypes = await response.json();
+                setData(result);
+            } catch (error) {
+                console.error("Error loading portfolio data:", error);
+            }
+        };
+        fetchHomeData();
     }, []);
 
-    if (!content) return null;
-
-    const { homeContent, devLoadoutsContent: rawDevLoadoutsContent } = content;
-    const devLoadoutsContent: DevLoadoutsContent = rawDevLoadoutsContent;
-
     return (
-        <Suspense fallback={<div>Loading sections...</div>}>
-            <Fragment>
-                <CookingArea>
-                    <div className="container-fluid py-3">
+        <CookingArea>
+            <div className="container-fluid py-3">
+                {/* Row 1: Header & Profile */}
+                <div className="row g-3 mb-3 d-flex align-items-stretch stack-on-mobile">
+                    
+                    <HeaderComponent
+                        isLoading={isLoading}
+                        headerPhrase={data?.site?.headerPhrase}
+                        mobileHeaderPhrase={data?.site?.mobileHeaderPhrase}
+                    />
 
-                        <div className="row g-3 mb-3 d-flex align-items-stretch stack-on-mobile">
-                            <Suspense fallback={<div>Loading header...</div>}>
-                                <HeaderComponent
-                                    headerPhrase={homeContent.headerPhrase}
-                                    mobileHeaderPhrase={homeContent.mobileHeaderPhrase}
-                                />
-                            </Suspense>
+                    <ProfileImageComponent
+                        isLoading={isLoading}
+                        src={data?.site?.profileImage}
+                        className="order-first-on-mobile"
+                    />
+                </div>
 
-                            <Suspense fallback={<div>Loading profile image...</div>}>
-                                <ProfileImageComponent 
-                                src={homeContent.profileImage}
-                                className="order-first-on-mobile" 
-                                />
-                            </Suspense>
-                        </div>
-
-                        <div className="row g-3 stack-on-mobile">
-                            <Suspense fallback={<div>Loading elevator pitch...</div>}>
-                                <ElevatorPitchComponent items={homeContent.elevatorPitch} />
-                            </Suspense>
-
-                            <Suspense fallback={<div>Loading development loadouts...</div>}>
-                                <DevLoadoutsComponent content={devLoadoutsContent} />
-                            </Suspense>
-
-                            <Suspense fallback={<div>Loading column panels...</div>}>
-                                <ColumnPanels
-                                    profileInfo={content.profileInfo}
-                                    socialLinks={content.socialLinksContent.badges}
-                                    className="order-first-on-mobile"
-                                />
-                            </Suspense>
-                        </div>
+                {/* Row 2: Content Sections */}
+                <div className="row g-3 stack-on-mobile">
+                    
+                    {/* Elevator Pitch - Needs a wrapper now that we removed it from the component */}
+                    <div className="col-4 d-flex flex-column">
+                        <ElevatorPitchComponent
+                            isLoading={isLoading}
+                            items={data?.sections.pitch.items.map((text: string) => ({
+                                title: "Know 'lil more about me",
+                                content: text
+                            }))}
+                        />
                     </div>
-                </CookingArea>
-            </Fragment>
-        </Suspense>
+
+                    <DevelopmentLoadoutsComponent 
+                        isLoading={isLoading}
+                        content={data ? {
+                            header: "Development Loadouts",
+                            sections: data.sections.loadouts
+                        } : undefined} 
+                    />
+
+                    <ColumnPanels
+                        isLoading={isLoading}
+                        profileInfo={data?.profile}
+                        socialLinks={data ? data.sections.social.items.map(link => ({
+                            href: link.target_url,
+                            img: link.image_url,
+                            alt: link.label
+                        })) : undefined}
+                        className="order-first-on-mobile"
+                    />
+                </div>
+            </div>
+        </CookingArea>
     );
 }
