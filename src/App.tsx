@@ -7,7 +7,7 @@ export default function App() {
   return (
     <Fragment>
       <NavBar brandName={brandName} links={NavLinks} />
-
+      
       <Routes>
         {NavLinks.map((link) => (
           <Route
