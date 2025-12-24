@@ -24,7 +24,6 @@
     color: #FFD700;
 }
 
-/* !important ensures we override the default Bootstrap active state color */
 .custom-nav .nav-link.active {
     color: #FFFF00;
 }
