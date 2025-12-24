@@ -1,0 +1,31 @@
+/* ProfileImage.css */
+
+.profile-image-placeholder {
+    /* Match the size of your .profileImage class */
+    width: 150px; 
+    height: 150px;
+    
+    /* If your img-thumbnail makes it a circle, use 50%. 
+       If it's a rounded square, use 0.25rem or similar */
+    border-radius: 50%; 
+    
+    display: block;
+    opacity: 0.15;
+}
+
+/* Ensure the container matches the layout of the real component */
+.profile-image-container-skeleton {
+    min-height: 180px; /* Adjust based on your actual layout height */
+}
+
+
+.profile-image-hidden {
+    display: none;
+}
+
+/* ProfileImage.css */
+.profile-image-dimensions {
+    width: 150px; 
+    height: 150px;
+    display: inline-block; /* Ensures the wrapper respects width/height */
+}
