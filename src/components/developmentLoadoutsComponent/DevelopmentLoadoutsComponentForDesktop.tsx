@@ -1,4 +1,5 @@
 import "./DevelopmentLoadoutsComponent.css";
+import AsyncImage from "../asyncImageLoader/AsyncImage";
 
 interface DevLoadoutSection {
     category: string;
@@ -47,12 +48,22 @@ export default function DevelopmentLoadoutsComponentForDesktop({ content }: Deve
                                     <div className="accordion-body py-2">
                                         <div
                                             className={`d-flex flex-wrap gap-2 ${section.badges.length > 3
-                                                    ? "justify-content-between"
-                                                    : "justify-content-start"
+                                                ? "justify-content-between"
+                                                : "justify-content-start"
                                                 }`}
                                         >
+                                            {/* 2. Direct implementation of AsyncImage */}
                                             {section.badges.map((badgeUrl, i) => (
-                                                <img key={i} src={badgeUrl} alt={`${section.category} badge`} />
+                                                <AsyncImage
+                                                    key={i}
+                                                    src={badgeUrl}
+                                                    alt={`${section.category} badge ${i}`}
+
+                                                    // ADD 'rounded' and 'overflow-hidden' HERE
+                                                    wrapperClassName="badge-wrapper rounded overflow-hidden d-inline-flex align-items-center justify-content-center"
+
+                                                    className="badge-img"
+                                                />
                                             ))}
                                         </div>
                                     </div>

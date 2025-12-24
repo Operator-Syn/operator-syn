@@ -1,3 +1,6 @@
+import "./DevelopmentLoadoutsComponent.css"; 
+import AsyncImage from "../asyncImageLoader/AsyncImage";
+
 interface DevLoadoutSection {
     category: string;
     badges: string[];
@@ -25,10 +28,14 @@ export default function DevelopmentLoadoutsComponentForMobile({ content }: Devel
                         <h5 className="mb-2">{section.category}</h5>
                         <div className="d-flex flex-wrap gap-2">
                             {section.badges.map((badgeUrl, i) => (
-                                <img
-                                    key={i}
-                                    src={badgeUrl}
-                                    alt={`${section.category} badge`}
+                                <AsyncImage 
+                                    key={i} 
+                                    src={badgeUrl} 
+                                    alt={`${section.category} badge ${i}`} 
+                                    
+                                    wrapperClassName="badge-wrapper rounded overflow-hidden d-inline-flex align-items-center justify-content-center"
+                                    
+                                    className="badge-img"
                                 />
                             ))}
                         </div>
