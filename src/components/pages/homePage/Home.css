@@ -3,6 +3,20 @@
     background-color: rgba(87, 131, 177, 0.5);
 }
 
+.light-glass-blue-hue-opaque {
+    background-color: rgba(87, 131, 177, 0.25) !important;
+
+    /* Optional: Adds a blur effect for true "Glassmorphism" */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    /* Ensures text is readable on blue */
+}
+
+.light-glass-blue-hue-opaque .btn-close {
+    filter: invert(1); /* Makes the 'X' button white instead of black */
+}
+
 .profileDetails {
     /* width: 100%; */
     padding: 1rem;
