@@ -1,0 +1,23 @@
+/* MediaModal.css */
+
+/* Target the Previous and Next buttons inside your custom class */
+.custom-carousel-controls .carousel-control-prev,
+.custom-carousel-controls .carousel-control-next {
+    height: 15% !important;        /* Reduce height significantly */
+    top: 50%;                      /* Move to middle of container */
+    transform: translateY(-50%);   /* Center strictly vertically */
+    width: 5%;                     /* Reduce width slightly */
+    
+    /* Optional: Add a background so they are easier to see since they are smaller */
+    background-color: rgba(0, 0, 0, 0.2); 
+    border-radius: 50%;            /* Optional: makes the hit area circular/rounded */
+    width: 50px;                   /* Optional: fixed width if you want a circle */
+    height: 50px !important;       /* Optional: fixed height if you want a circle */
+}
+
+/* Ensure the icons inside are centered */
+.custom-carousel-controls .carousel-control-prev-icon,
+.custom-carousel-controls .carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+}
