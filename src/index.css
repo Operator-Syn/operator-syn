@@ -102,6 +102,10 @@ p {
     line-height: clamp(1.2, 2vw, 1.5);
 }
 
+.global-font-color {
+    color: rgb(227, 242, 253);
+}
+
 small {
     font-size: clamp(0.75rem, 1.5vw, 0.875rem);
     line-height: 1.25;
