@@ -12,18 +12,26 @@ export type Bindings = {
 
 const app = new Hono<{ Bindings: Bindings }>();
 
-// Add CORS middleware (replacing manual headers in controllers)
+// Add CORS middleware
 app.use('/api/*', cors());
 
-// Define your routes
+// 1. Root Redirect: Redirect base URL to your main site
+app.get('/', (c) => {
+  return c.redirect('https://www.syn-forge.com', 301);
+});
+
+// 2. API Routes
 app.get('/api/home', async (c) => {
   return await HomePageController.handleHome(c);
 });
 
 app.get('/api/projects', async (c) => {
   return await ProjectsPageController.handleProjects(c);
-})
+});
 
-app.notFound((c) => c.text('Not Found', 404));
+// 3. Global Catch-all: Redirect any undefined routes to main site
+app.notFound((c) => {
+  return c.redirect('https://www.syn-forge.com', 302);
+});
 
 export default app;
