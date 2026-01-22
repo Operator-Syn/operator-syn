@@ -14,6 +14,9 @@ interface MediaModalProps {
 export default function MediaModal({ project, show, onClose }: MediaModalProps) {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
+    // Helper to determine if we have more than 1 item
+    const hasMultipleSlides = project.gallery.length > 1;
+
     const handleSlide = () => {
         setIsVideoPlaying(false);
     };
@@ -35,10 +38,14 @@ export default function MediaModal({ project, show, onClose }: MediaModalProps) 
             <Modal.Body className="p-0 border-0">
                 <Carousel
                     className='border-0 custom-carousel-controls'
-                    interval={isVideoPlaying ? null : 5000}
+                    // Stop auto-play if video is playing OR if there is only 1 slide
+                    interval={isVideoPlaying || !hasMultipleSlides ? null : 5000}
                     pause="hover"
-                    controls={true}   
+                    // Only show arrows if there is more than 1 slide
+                    controls={hasMultipleSlides}   
                     indicators={false} 
+                    // Optional: Disable swiping on touch devices if only 1 slide
+                    touch={hasMultipleSlides} 
                     onSlide={handleSlide}
                 >
                     {project.gallery.map((media, index) => (
@@ -66,14 +73,17 @@ export default function MediaModal({ project, show, onClose }: MediaModalProps) 
                 <Button variant="secondary" onClick={onClose}>
                     Close
                 </Button>
-                <Button
-                    variant="primary"
-                    href={project.projectLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View Project Source
-                </Button>
+                {/* Optional: Hide this button if link is empty (like in your 'Still Cooking' card) */}
+                {project.projectLink && (
+                    <Button
+                        variant="primary"
+                        href={project.projectLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View Project Source
+                    </Button>
+                )}
             </Modal.Footer>
         </Modal>
     );
