@@ -9,7 +9,6 @@
     "deploy": "gh-pages -b gh-pages -d dist",
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "postbuild": "shx cp dist/index.html dist/404.html",
     "lint": "eslint .",
     "preview": "npm run build && serve -s dist"
   },
@@ -41,6 +40,7 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.4",
-    "vite-plugin-purgecss": "^0.2.13"
+    "vite-plugin-purgecss": "^0.2.13",
+    "vite-plugin-sitemap": "^0.8.2"
   }
 }
