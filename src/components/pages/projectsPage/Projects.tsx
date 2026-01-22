@@ -1,6 +1,6 @@
 // Projects.tsx
-import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query'; // 1. Import Hook
+import { useState, useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import CookingArea from "../../cookingArea/CookingArea";
 import './Projects.css';
 import { type MediaItem } from '../../../types/MediaCardTypes';
@@ -49,6 +49,19 @@ const fetchProjects = async (): Promise<MediaItem[]> => {
     }));
 };
 
+// 3. The Static "Vibe" Card
+// This sits outside the component so it doesn't get recreated on every render
+const FUTURE_PROJECTS_CARD: MediaItem = {
+    id: 999999, // High ID to avoid conflict
+    title: "Still cooking",
+    type: 'image',
+    url: 'https://placehold.co/600x400/E2E8F0/64748B?text=In+Progress', 
+    shortDescription: "More projects on the way. I'm always working on something new. Check back soon to see what’s been added to the collection.",
+    longDescription: "",
+    projectLink: "",
+    gallery: [],
+};
+
 export default function Projects() {
     // UI States (Only keep what is local to the UI interaction)
     const [selectedProject, setSelectedProject] = useState<MediaItem | null>(null);
@@ -68,7 +81,19 @@ export default function Projects() {
         gcTime: 1000 * 60 * 35,                
     });
 
+    // 4. Merge API Data with Static Card
+    const displayProjects = useMemo(() => {
+        // If data is still loading or errored, return empty
+        if (isLoading || isError) return [];
+        
+        // Return the API projects list with the Static Card appended at the very end
+        return [...projects, FUTURE_PROJECTS_CARD];
+    }, [projects, isLoading, isError]);
+
     const handleOpenProject = (item: MediaItem) => {
+        // Prevent opening the modal for the "Quietly Crafting" card
+        if (item.id === FUTURE_PROJECTS_CARD.id) return;
+
         setSelectedProject(item);
         setShowModal(true);
     };
@@ -101,7 +126,7 @@ export default function Projects() {
                 {/* Data Loaded Successfully */}
                 {!isLoading && !isError && (
                     <Grid 
-                        projects={projects} 
+                        projects={displayProjects} 
                         onProjectClick={handleOpenProject} 
                     />
                 )}
