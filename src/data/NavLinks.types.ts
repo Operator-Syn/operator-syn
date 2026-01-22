@@ -7,6 +7,6 @@ export const brandName = "Operator-Syn";
 export const navLinks: NavLinkItem[] = [
     { name: "Home", path: "/", component: Home },
     { name: "Projects", path: "/projects", component: Projects },
-    { name: "Certificates", path: "/certs", component: null },
+    { name: "Certificates", path: "/certificates", component: null },
     { name: "Snippets", path: "/snippets", component: null },
 ];
