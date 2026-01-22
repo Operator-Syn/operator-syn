@@ -1,5 +1,6 @@
 // MediaRenderer.tsx
 import AsyncImage from "../asyncImageLoader/AsyncImage";
+import "./MediaRenderer.css"; // Make sure to create this file
 
 interface MediaRendererProps {
     type: 'video' | 'image';
@@ -47,7 +48,7 @@ export default function MediaRenderer({
         <AsyncImage 
             src={url} 
             alt="media content" 
-            className={classes} 
+            className={`${classes} media-renderer-fix`} 
             wrapperClassName="w-100 h-100 position-absolute top-0 start-0" 
         />
     );
