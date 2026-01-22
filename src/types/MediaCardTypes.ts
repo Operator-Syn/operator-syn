@@ -1,4 +1,4 @@
-// ProjectPageTypes.ts
+// MediaCardTypes.ts
 export interface MediaItem {
     id: number;
     title: string;
