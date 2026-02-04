@@ -1,0 +1,57 @@
+/* Existing styles */
+.light-glass-blue-hue {
+    background-color: rgba(87, 131, 177, 0.5);
+}
+
+.light-glass-blue-hue-opaque {
+    background-color: rgba(87, 131, 177, 0.25) !important;
+
+    /* Optional: Adds a blur effect for true "Glassmorphism" */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    /* Ensures text is readable on blue */
+}
+
+.light-glass-blue-hue-opaque .btn-close {
+    filter: invert(1); /* Makes the 'X' button white instead of black */
+}
+
+.profileDetails {
+    /* width: 100%; */
+    padding: 1rem;
+    background-color: rgba(87, 131, 177, 0.5);
+}
+
+.profileImage {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Custom responsive row for stacking columns */
+.stack-on-mobile {
+    display: flex;
+    flex-wrap: nowrap;
+    /* default desktop layout keeps columns side by side */
+}
+
+@media (max-width: 1400px) {
+    .stack-on-mobile {
+        flex-direction: column;
+        /* stack vertically */
+    }
+
+    .order-first-on-mobile {
+        order: -1;
+        /* moves it to the top of the flex container */
+    }
+
+    .stack-on-mobile>* {
+        width: 100%;
+        /* make each column full width */
+        margin-bottom: 1rem;
+        /* spacing between stacked items */
+    }
+}

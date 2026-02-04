@@ -1,0 +1,10 @@
+/* Projects.css */
+
+/* Makes the card look clickable */
+.cursor-pointer {
+    cursor: pointer;
+    transition: transform 0.25s;
+}
+.cursor-pointer:hover {
+    transform: scale(1.05); 
+}

@@ -1,0 +1,73 @@
+/* DevelopmentLoadoutsComponent.css */
+.accordion {
+    --bs-accordion-bg: none;
+    --bs-accordion-btn-color: rgb(227, 242, 253);
+    --bs-accordion-btn-bg: none;
+    --bs-accordion-active-bg: none;
+    --bs-accordion-color: none;
+    --bs-accordion-active-color: rgb(227, 242, 253);
+    --bs-accordion-border-color: none;
+    --bs-accordion-btn-focus-box-shadow: none;
+
+}
+
+.accordion-button:not(.collapsed) {
+    box-shadow: none;
+}
+
+/* Collapsed state: plus icon */
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(227,242,253)' viewBox='0 0 16 16'%3E%3Cpath d='M8 1v14M1 8h14' stroke='rgb(227,242,253)' stroke-width='2'/%3E%3C/svg%3E");
+    transition: all 0.2s;
+}
+
+/* Expanded state: minus icon */
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(227,242,253)' viewBox='0 0 16 16'%3E%3Cpath d='M1 8h14' stroke='rgb(227,242,253)' stroke-width='2'/%3E%3C/svg%3E");
+}
+
+/* --- Badge Placeholder Logic --- */
+
+.badge-wrapper {
+    /* Determines the width of the grey loading rectangle */
+    min-width: 8rem;
+    height: 28px;
+    line-height: 0;
+    display: inline-block;
+    transition: min-width 0.3s ease;
+}
+
+.badge-wrapper:not(.placeholder) {
+    min-width: 0; 
+}
+
+.badge-img {
+    height: 28px;
+    width: auto;
+}
+
+.dev-badge-hidden {
+    display: none;
+}
+
+.dev-loadouts-placeholder-title {
+    height: 3rem; 
+    width: 60%; 
+    display: block;
+    opacity: 0.15;
+}
+
+.dev-loadouts-placeholder-item {
+    min-height: 3.5rem; 
+    width: 100%;
+    display: block;
+    opacity: 0.15;
+    flex-grow: 1; 
+}
+
+.dev-loadouts-placeholder-badge {
+    height: 28px;
+    width: 8rem;
+    display: inline-block;
+    opacity: 0.15;
+}
